@@ -5,7 +5,7 @@ metadata:
   labels:
     app: java-app
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: java-application
   ports:
