@@ -15,7 +15,7 @@ spec:
         app: java-application
     spec:
       containers:
-      - name: devops-java
-        image: ranjeeth3302/devops-java:latest
+      - name: devops-java:
+        image: ranjeeth3302/devops-java:
         ports:
         - containerPort: 8080
