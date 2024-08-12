@@ -1,7 +1,7 @@
 pipeline {
     agent { label "jenkins-agent" }
     environment {
-              APP_Name = "devops-java"
+        APP_Name = "devops-java"
     }
 
     stages {
@@ -12,9 +12,9 @@ pipeline {
         }
 
         stage("Checkout from SCM") {
-               steps {
-                   git branch: 'main', credentialsId: 'github', url: 'https://github.com/RanjeethAcharya/devops.jar-CD'
-               }
+            steps {
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/RanjeethAcharya/devops.jar-CD'
+            }
         }
 
         stage("Update the Deployment Tags") {
@@ -36,8 +36,9 @@ pipeline {
                    git commit -m "Updated Deployment Manifest"
                 """
                 withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
-                  sh "git push https://github.com/RanjeethAcharya/devops.jar-CD main"
-            }
-        }
-    }
-}
+                    sh "git push https://github.com/RanjeethAcharya/devops.jar-CD main"
+                } // Closing brace for withCredentials
+            } // Closing brace for steps
+        } // Closing brace for stage
+    } // Closing brace for stages
+} // Closing brace for pipeline
