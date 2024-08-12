@@ -20,14 +20,16 @@ pipeline {
         stage("Update the Deployment Tags") {
             steps {
                 sh """
+                   echo "Before Update:"
                    cat deployment.yaml
-                   sed -i 's/${APP_Name}.*/${APP_Name}:${BUILD_NUMBER}/g' deployment.yaml
+                   sed -i 's|image: ranjeeth3302/devops-java:.*|image: ranjeeth3302/devops-java:${BUILD_NUMBER}|g' deployment.yaml
+                   echo "After Update:"
                    cat deployment.yaml
                 """
             }
         }
 
-        stage("Push the changed deployment file to Git") {
+        stage("Push the Changed Deployment File to Git") {
             steps {
                 sh """
                    git config --global user.name "ranjeeth3302"
